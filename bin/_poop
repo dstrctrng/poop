@@ -1,0 +1,15 @@
+_poop_name=
+_poop_resource=
+
+function directory {
+  _poop_name="$1"; shift
+  _poop_resource="directory"
+}
+
+function do_directory {
+  mkdir -p "${_poop_name}"
+}
+
+function end {
+  eval "do_${_poop_resource}"
+}
