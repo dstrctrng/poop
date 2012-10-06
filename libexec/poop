@@ -16,6 +16,11 @@ require 'poop'
 # entry point
 function main {
   directory "meh"
+    mode 0750
+  end
+
+  directory "meh/mon"
+    mode 0700
   end
 }
 

@@ -10,7 +10,17 @@ function directory {
 }
 
 function do_directory {
-  install -v -d $(install_options)"${_poop_name}"
+  # since install -d recursively creates directories, check for intermediate
+  # directories manually when recursion is not desired
+  if [[ -z "$_poop_recursive" ]]; then
+    local dname="$(dirname "${_poop_path:-${_poop_name}}")"
+    if [[ ! -d "$dname" ]]; then
+      logger_fatal "while creating ${_poop_path:-${_poop_name}}, $dname is not a directory"
+      exit 1
+    fi
+  fi
+
+  install -v -d $(install_options)"${_poop_path:-${_poop_name}}"
 }
 
 function mode {
@@ -25,6 +35,14 @@ function group {
   _poop_group="$1"; shift
 }
 
+function path {
+  _poop_path="$1"; shift
+}
+
+function recursive {
+  _poop_recursive="$1"; shift
+}
+
 function end {
   eval "do_${_poop_resource}"
 
@@ -32,6 +50,8 @@ function end {
   _poop_mode=
   _poop_owner=
   _poop_group=
+  _poop_path=
+  _poop_recursive=
 }
 
 function install_options {
