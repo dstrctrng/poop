@@ -1,0 +1,24 @@
+#!/bin/bash
+
+directory "meh"
+  mode 0750
+end
+
+directory "meh/mon"
+  mode 0700
+end
+
+directory "meh/meh"
+end
+
+directory "meh/meh"
+  action delete
+end
+
+directory "meh/mon"
+  action delete
+end
+
+directory "meh"
+  action delete
+end

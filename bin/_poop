@@ -89,5 +89,11 @@ function install_options {
   fi
 }
 
+function recipe {
+  local nm_recipe="$1"; shift
+  set --
+  source "$shome/recipes/$nm_recipe"
+}
+
 _poop_resource=
 end
