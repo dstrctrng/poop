@@ -22,6 +22,21 @@ function main {
   directory "meh/mon"
     mode 0700
   end
+
+  directory "meh/meh"
+  end
+
+  directory "meh/meh"
+    action delete
+  end
+
+  directory "meh/mon"
+    action delete
+  end
+
+  directory "meh"
+    action delete
+  end
 }
 
 # parse the command-line
