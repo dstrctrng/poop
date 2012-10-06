@@ -11,19 +11,17 @@ shome="$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
 
 # load a jason bourne library
 source "$shome/bin/_treadstone"
-require 'poop'
+
+# parse the command-line
 
 # entry point
 function main {
+  require 'poop'
+
   local nm_recipe
   for nm_recipe in "$@"; do
     recipe "$nm_recipe"
   done
 }
 
-# parse the command-line
-parse_command_line "$@" || exit $?
-eval set -- "${FLAGS_ARGV}"
-
-# pass arguments to entry point
-main "$@"
+require 'sub' "$BASH_SOURCE" "$@"
