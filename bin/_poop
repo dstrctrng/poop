@@ -1,5 +1,8 @@
-_poop_name=
-_poop_resource=
+#!/bin/bash
+
+function do_ {
+  true
+}
 
 function directory {
   _poop_name="$1"; shift
@@ -7,9 +10,43 @@ function directory {
 }
 
 function do_directory {
-  mkdir -p "${_poop_name}"
+  install -v -d $(install_options)"${_poop_name}"
+}
+
+function mode {
+  _poop_mode="$1"; shift
+}
+
+function owner {
+  _poop_owner="$1"; shift
+}
+
+function group {
+  _poop_group="$1"; shift
 }
 
 function end {
   eval "do_${_poop_resource}"
+
+  _poop_name=
+  _poop_mode=
+  _poop_owner=
+  _poop_group=
 }
+
+function install_options {
+  if [[ -n "$_poop_mode" ]]; then
+    echo -n "-m $_poop_mode "
+  fi
+
+  if [[ -n "$_poop_owner" ]]; then
+    echo -n "-o $_poop_owner"
+  fi
+
+  if [[ -n "$_poop_group" ]]; then
+    echo -n "-g $_poop_group"
+  fi
+}
+
+_poop_resource=
+end
