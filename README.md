@@ -1,7 +1,12 @@
 poop
 ====
 
-chef implemented in bash, if that makes any sense
+chef-inspired configuration management in bash.
 
-Check out libexec/poop for an example of how to run some recipes.
-Executed from bin/poop (using the sub script organization scheme).
+With all the food related names like cuisine, chef, microwave, why not
+poop?  You start with a recipe, cook a meal, eat it, digest, and the end
+result is poop.  And what can you do with it?  Grow more food!
+
+Look at recipes/meh for an example.  To turn this recipe into poop, run:
+
+    bin/poop meh
