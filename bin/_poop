@@ -86,10 +86,10 @@ function recursive {
 function end {
   eval "do_${_poop_resource}"
 
-  _poop_ignore_failure=
+  _poop_ignore_failure=false
   _poop_provider=
-  _poop_retries=
-  _poop_retry_delay=
+  _poop_retries=0
+  _poop_retry_delay=2
   _poop_supports=
   _poop_name=
   _poop_action=
