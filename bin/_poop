@@ -39,6 +39,26 @@ function do_directory_delete {
   fi
 }
 
+function ignore_failure {
+  _poop_ignore_failure="$1"; shift
+}
+
+function provider {
+  _poop_provider="$1"; shift
+}
+
+function retries {
+  _poop_retries="$1"; shift
+}
+
+function retry_delay {
+  _poop_retry_delay="$1"; shift
+}
+
+function supports {
+  _poop_supports="$1"; shift
+}
+
 function action {
   _poop_action="$1"; shift
 }
@@ -66,6 +86,11 @@ function recursive {
 function end {
   eval "do_${_poop_resource}"
 
+  _poop_ignore_failure=
+  _poop_provider=
+  _poop_retries=
+  _poop_retry_delay=
+  _poop_supports=
   _poop_name=
   _poop_action=
   _poop_mode=
