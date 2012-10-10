@@ -39,65 +39,30 @@ function do_directory_delete {
   fi
 }
 
-function ignore_failure {
-  _poop_ignore_failure="$1"; shift
+function end_ {
+  true
 }
 
-function provider {
-  _poop_provider="$1"; shift
-}
+_last_end="end_"
 
-function retries {
-  _poop_retries="$1"; shift
-}
+function mkattr {
+  local attr="$1"; shift
+  local attrdef="${1:-}"
+  local dollar='$'
 
-function retry_delay {
-  _poop_retry_delay="$1"; shift
-}
-
-function supports {
-  _poop_supports="$1"; shift
-}
-
-function action {
-  _poop_action="$1"; shift
-}
-
-function mode {
-  _poop_mode="$1"; shift
-}
-
-function owner {
-  _poop_owner="$1"; shift
-}
-
-function group {
-  _poop_group="$1"; shift
-}
-
-function path {
-  _poop_path="$1"; shift
-}
-
-function recursive {
-  _poop_recursive="$1"; shift
+  eval "_poop_${attr}="
+  eval "function ${attr} { _poop_${attr}="${dollar}1"; shift; }"
+  eval "function end_${attr} { _poop_${attr}=; ${_last_end}=${attrdef}; }"
+  _last_end="end_${attr}"
 }
 
 function end {
   eval "do_${_poop_resource}"
+  eval "${_last_end}"
 
   _poop_ignore_failure=false
-  _poop_provider=
   _poop_retries=0
   _poop_retry_delay=2
-  _poop_supports=
-  _poop_name=
-  _poop_action=
-  _poop_mode=
-  _poop_owner=
-  _poop_group=
-  _poop_path=
-  _poop_recursive=
 }
 
 function install_options {
@@ -120,5 +85,17 @@ function recipe {
   source "$shome/recipes/$nm_recipe"
 }
 
-_poop_resource=
+mkattr resource
+mkattr ignore_failure false
+mkattr provider 
+mkattr retries 0
+mkattr retry_delay 2
+mkattr supports
+mkattr action 
+mkattr recursive
+mkattr mode 
+mkattr owner 
+mkattr group
+mkattr path
+
 end
