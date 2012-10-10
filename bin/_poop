@@ -12,3 +12,5 @@ require 'poop/template'
 require 'poop/shell'
 
 end
+
+source "$shome/config/solo.sh"
