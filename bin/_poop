@@ -1,19 +1,5 @@
 #!/bin/bash
 
-function install_options {
-  if [[ -n "$_poop_mode" ]]; then
-    echo -n "-m $_poop_mode "
-  fi
-
-  if [[ -n "$_poop_owner" ]]; then
-    echo -n "-o $_poop_owner"
-  fi
-
-  if [[ -n "$_poop_group" ]]; then
-    echo -n "-g $_poop_group"
-  fi
-}
-
 function recipe {
   local nm_recipe="$1"; shift
   set --
@@ -23,5 +9,6 @@ function recipe {
 require 'poop/attributes'
 require 'poop/directory'
 require 'poop/template'
+require 'poop/shell'
 
 end
