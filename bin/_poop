@@ -82,7 +82,7 @@ function install_options {
 function recipe {
   local nm_recipe="$1"; shift
   set --
-  source "$shome/recipes/$nm_recipe"
+  source "$nm_recipe"
 }
 
 attr_accessor resource

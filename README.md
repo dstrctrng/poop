@@ -9,4 +9,8 @@ result is poop.  And what can you do with it?  Grow more food!
 
 Look at recipes/meh for an example.  To turn this recipe into poop, run:
 
-    bin/poop meh
+    bin/poop recipes/meh
+
+Recipes can be run directly with a `#!/usr/bin/env poop` shebang:
+
+    recipes/meh

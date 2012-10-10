@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bin/poop
 
 directory "meh"
   mode 0750
