@@ -16,9 +16,13 @@ function do_template_create {
   local _dollar='$'
   local pth_source="${_poop_sauce}"
 
-  eval "cat <<EOF
+  local tmp_template="$(mktemp -t XXXXXXXXX)"
+  eval "cat > $tmp_template <<EOF
 $(cat "${pth_source}" | perl -pe 's{\$\{(\w+)\}}{!!!/$1/!!!}g; 
                       s{\$}{\${_dollar}}g; 
                       s{!!!/(\w+)/!!!}{\${$1}}g;')
 EOF"
+
+  install -v $(install_options)"$tmp_template" "${_poop_path}"
+  rm -f "$tmp_template"
 }

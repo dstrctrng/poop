@@ -23,7 +23,10 @@ directory "meh"
   action delete
 end
 
+directory "tmp"
+end
+
 name="David"
-template "hello.txt"
+template "tmp/hello.txt"
   sauce "templates/feh"
 end

@@ -40,4 +40,8 @@ attr_accessor mode
 attr_accessor owner
 attr_accessor group
 attr_accessor path
+attr_accessor create_if_missing
+attr_accessor backup 5
+attr_accessor cookbook
 attr_accessor sauce
+attr_accessor variables
