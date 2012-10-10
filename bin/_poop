@@ -45,7 +45,7 @@ function end_ {
 
 _last_end="end_"
 
-function mkattr {
+function attr_accessor {
   local attr="$1"; shift
   local attrdef="${1:-}"
   local dollar='$'
@@ -85,17 +85,17 @@ function recipe {
   source "$shome/recipes/$nm_recipe"
 }
 
-mkattr resource
-mkattr ignore_failure false
-mkattr provider 
-mkattr retries 0
-mkattr retry_delay 2
-mkattr supports
-mkattr action 
-mkattr recursive
-mkattr mode 
-mkattr owner 
-mkattr group
-mkattr path
+attr_accessor resource
+attr_accessor ignore_failure false
+attr_accessor provider 
+attr_accessor retries 0
+attr_accessor retry_delay 2
+attr_accessor supports
+attr_accessor action 
+attr_accessor recursive
+attr_accessor mode 
+attr_accessor owner 
+attr_accessor group
+attr_accessor path
 
 end
