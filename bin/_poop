@@ -17,7 +17,7 @@ function attr_accessor {
 
   eval "_poop_${attr}="
   eval "function ${attr} { _poop_${attr}="${dollar}1"; shift; }"
-  eval "function end_${attr} { _poop_${attr}=; ${_last_end}=${attrdef}; }"
+  eval "function end_${attr} { _poop_${attr}=${attrdef}; ${_last_end}; }"
   _last_end="end_${attr}"
 }
 
@@ -62,7 +62,9 @@ attr_accessor mode
 attr_accessor owner 
 attr_accessor group
 attr_accessor path
+attr_accessor sauce
 
 end
 
 require 'poop/directory'
+require 'poop/template'

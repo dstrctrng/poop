@@ -22,3 +22,8 @@ end
 directory "meh"
   action delete
 end
+
+name="David"
+template "hello.txt"
+  sauce "templates/feh"
+end

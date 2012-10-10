@@ -1,0 +1,24 @@
+#!/bin/bash
+
+function template {
+  _poop_name="$1"; shift
+  _poop_resource="template"
+}
+
+function do_template {
+  : ${_poop_action:=create}
+  : ${_poop_path:=${_poop_name}}
+
+  eval "do_${_poop_resource}_${_poop_action}"
+}
+
+function do_template_create {
+  local _dollar='$'
+  local pth_source="${_poop_sauce}"
+
+  eval "cat <<EOF
+$(cat "${pth_source}" | perl -pe 's{\$\{(\w+)\}}{!!!/$1/!!!}g; 
+                      s{\$}{\${_dollar}}g; 
+                      s{!!!/(\w+)/!!!}{\${$1}}g;')
+EOF"
+}
