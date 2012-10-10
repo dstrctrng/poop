@@ -1,0 +1,36 @@
+#!/bin/bash
+
+function directory {
+  _poop_name="$1"; shift
+  _poop_resource="directory"
+}
+
+function do_directory {
+  : ${_poop_action:=create}
+  : ${_poop_path:=${_poop_name}}
+  : ${_poop_recursive:=false}
+
+  eval "do_${_poop_resource}_${_poop_action}"
+}
+
+function do_directory_create {
+  # since install -d recursively creates directories, check for intermediate
+  # directories manually when recursion is not desired
+  if [[ "$_poop_recursive" = false ]]; then
+    local dname="$(dirname "${_poop_path}")"
+    if [[ ! -d "$dname" ]]; then
+      logger_fatal "while creating ${_poop_path}, $dname is not a directory"
+      exit 1
+    fi
+  fi
+
+  install -v -d $(install_options)"${_poop_path}"
+}
+
+function do_directory_delete {
+  if [[ "$_poop_recursive" = false ]]; then
+    rm -vd  "${_poop_path}"
+  else
+    rm -vrf "${_poop_path}"
+  fi
+}
