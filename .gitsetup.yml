@@ -1,0 +1,6 @@
+---
+remotes:
+  primary: git@github.com:destructuring/poop
+  secondary: git@bitbucket.org:destructuring/poop
+  sh: https://github.com/destructuring/jason
+  bump: https://github.com/destructuring/mixin-bump
